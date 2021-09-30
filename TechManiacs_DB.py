@@ -19,7 +19,7 @@ def DB_call(request):
                 
                 #print("\nSelecting rows using cursor.fetchall..")
                 records = cur.fetchall()
-            elif request.upper().startswith('UPDATE') or request.upper().startswith('INSERT') or request.upper().startswith('DELETE'):
+            elif request.upper().startswith('UPDATE') or request.upper().startswith('INSERT') or request.upper().startswith('DELETE') or request.upper().startswith('DROP'):
                 updated_rows = cur.rowcount
                 conn.commit()
                 print(str(updated_rows)+" rows affected.")
@@ -93,7 +93,7 @@ while True:
             area = input()
         DB_product_display(area,choice)
         while True:
-            productName = input("*Please Type the EXACT name of the product you want to edit(type MENU to redirect to main menu:\n")
+            productName = input("*Please Type the EXACT name of the product you want to edit(type MENU to redirect to main menu:)\n")
             answer = DB_call('select from product where product_name ='+"'"+productName+"'")
             if productName == 'MENU':
                 break;            
